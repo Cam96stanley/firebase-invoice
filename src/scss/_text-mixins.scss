@@ -1,0 +1,41 @@
+@mixin text-heading-lg {
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 33px;
+  letter-spacing: -1px;
+}
+
+@mixin text-heading-md {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 22px;
+  letter-spacing: -0.75px;
+}
+
+@mixin text-heading-sm {
+  font-weight: 900;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.25px;
+}
+
+@mixin text-heading-sm-variant {
+  font-weight: 900;
+  font-size: 15px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+}
+
+@mixin text-body {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.15px;
+}
+
+@mixin text-body-variant {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+}
