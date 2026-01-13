@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import {
   createUserWithEmailAndPassword,
+  updateProfile,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -23,11 +24,18 @@ export const createUser = async (email, password, displayName) => {
     const userCredentials = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
+      displayName
     );
+
     const user = userCredentials.user;
 
+    await updateProfile(user, { displayName });
+
+    await user.reload();
+
     const token = await setCookie(user);
+
     console.log(token);
     console.log(user);
     return {
