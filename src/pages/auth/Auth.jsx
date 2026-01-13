@@ -1,7 +1,12 @@
+import useAuth from "../../context/useAuth";
+import LoginForm from "./components/LoginForm";
+
 export default function Auth() {
-  return (
-    <>
-      <p>Auth Page</p>
-    </>
-  );
+  const { user } = useAuth();
+
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return <LoginForm />;
 }
