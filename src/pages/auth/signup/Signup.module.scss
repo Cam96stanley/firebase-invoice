@@ -1,0 +1,31 @@
+@use "../../../scss/variables";
+@use "../../../scss/text-mixins";
+
+.signup__section {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    @include text-mixins.text-heading-lg;
+    color: white;
+    margin-bottom: 2rem;
+  }
+
+  .text {
+    margin-top: 1rem;
+    color: white;
+    @include text-mixins.text-body;
+
+    &__link {
+      text-decoration: none;
+      color: variables.$purple;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

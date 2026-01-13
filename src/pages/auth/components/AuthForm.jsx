@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createUser, signIn } from "../../../firebase/auth";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import styles from "./AuthForm.module.scss";
 
 export default function LoginForm() {
   const location = useLocation();
@@ -48,7 +49,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       {location.pathname === "/signup" && (
         <input
           type="text"
@@ -56,6 +57,7 @@ export default function LoginForm() {
           placeholder="Name"
           value={user.displayName}
           onChange={handleChange}
+          className={styles.form__input}
           required
         />
       )}
@@ -65,6 +67,7 @@ export default function LoginForm() {
         placeholder="Email"
         value={user.email}
         onChange={handleChange}
+        className={styles.form__input}
         required
       />
       <input
@@ -73,10 +76,11 @@ export default function LoginForm() {
         placeholder="Password"
         value={user.password}
         onChange={handleChange}
+        className={styles.form__input}
         required
       />
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit">
+      <button type="submit" className={styles.form__button}>
         {location.pathname === "/" ? "Log In" : "Sign Up"}
       </button>
     </form>

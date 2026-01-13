@@ -36,7 +36,6 @@ export const createUser = async (email, password, displayName) => {
 
     const token = await setCookie(user);
 
-    console.log(token);
     console.log(user);
     return {
       uid: user.uid,
@@ -60,8 +59,9 @@ export const signIn = async (email, password) => {
       password
     );
     const user = userCredentials.user;
+
     const token = await setCookie(user);
-    console.log(token);
+
     console.log(user);
     return {
       uid: user.uid,
