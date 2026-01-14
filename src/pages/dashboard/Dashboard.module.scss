@@ -1,0 +1,99 @@
+@use "../../scss/variables";
+@use "../../scss/text-mixins";
+
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.left__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &_invoice_text {
+    @include text-mixins.text-heading-md;
+    color: white;
+  }
+
+  &_invoice_count {
+    @include text-mixins.text-body-variant;
+    color: white;
+  }
+}
+
+.right__container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &__button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    @include text-mixins.text-heading-sm-variant;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  &:hover .dropdown__content {
+    display: block;
+  }
+
+  &__content {
+    display: none;
+    @include text-mixins.text-heading-sm;
+    color: white;
+    position: absolute;
+    padding: 0.25rem;
+    border-radius: 5px;
+    min-width: 80px;
+    background-color: variables.$purple;
+    z-index: 1;
+    overflow-y: auto;
+
+    &_item {
+      cursor: pointer;
+
+      &:hover {
+        background-color: variables.$light-purple;
+      }
+    }
+  }
+}
+
+.new_invoice__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  @include text-mixins.text-heading-sm-variant;
+  color: white;
+  background-color: variables.$purple;
+  border: none;
+  padding: 1rem 1.5rem 1rem 2.75rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: variables.$light-purple;
+  }
+
+  &_image_container {
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    background-color: variables.$light;
+    padding: 0.65rem 0.75rem;
+    border-radius: 50%;
+  }
+}
