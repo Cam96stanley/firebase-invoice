@@ -1,0 +1,59 @@
+@use "../../../scss/variables";
+@use "../../../scss/text-mixins";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  margin: 0 auto;
+  background-color: variables.$dark-blue;
+  border-radius: 8px;
+  padding: 1.5rem;
+  gap: 1rem;
+  color: white;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: inherit;
+
+    &_invoice_number {
+      @include text-mixins.text-heading-sm;
+    }
+
+    &_recipient {
+      @include text-mixins.text-body;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+
+    &_due_date {
+      @include text-mixins.text-body-variant;
+    }
+
+    &_total {
+      @include text-mixins.text-heading-sm;
+    }
+
+    &_left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &_right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      background-color: rgba(0, 121, 0, 0.1);
+      color: #66ff00;
+      border-radius: 8px;
+      @include text-mixins.text-heading-sm;
+    }
+  }
+}

@@ -9,10 +9,9 @@ export const PAYMENT_TERMS = Object.freeze({
 });
 
 export const STATUS = Object.freeze({
-  PENDING: "pending",
-  IN_PROCESS: "in process",
-  COMPLETED: "completed",
-  CANCELED: "canceled",
+  PENDING: "Pending",
+  PAID: "Paid",
+  DRAFT: "Draft",
 });
 
 const createInvoiceItem = (overrides = {}) => ({
@@ -24,6 +23,7 @@ const createInvoiceItem = (overrides = {}) => ({
 });
 
 export const invoiceModel = (overrides = {}) => ({
+  userId: "",
   invoiceNumber: "",
   billFrom: {
     name: "",

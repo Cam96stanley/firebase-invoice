@@ -1,14 +1,32 @@
+import { useEffect, useState } from "react";
 import plusIcon from "../../assets/icon-plus.svg";
 import arrowDown from "../../assets/icon-arrow-down.svg";
 import styles from "./Dashboard.module.scss";
+import { getInvoices } from "../../services/invoices.service";
+import InvoiceCards from "./components/InvoiceCards";
 
 export default function Dashboard() {
+  const [invoices, setInvoices] = useState([]);
+
+  useEffect(() => {
+    const fetchInvoices = async () => {
+      const data = await getInvoices();
+      setInvoices(data);
+    };
+
+    fetchInvoices();
+  }, []);
+
   return (
     <section>
       <div className={styles.dashboard__header}>
         <div className={styles.left__container}>
           <h2 className={styles.left__container_invoice_text}>Invoices</h2>
-          <p className={styles.left__container_invoice_count}>No invoices</p>
+          <p className={styles.left__container_invoice_count}>
+            {invoices.length > 0
+              ? `${invoices.length} Invoices`
+              : "No Invoices"}
+          </p>
         </div>
         <div className={styles.right__container}>
           <div className={styles.dropdown}>
@@ -47,6 +65,7 @@ export default function Dashboard() {
           </button>
         </div>
       </div>
+      <InvoiceCards invoices={invoices} />
     </section>
   );
 }
