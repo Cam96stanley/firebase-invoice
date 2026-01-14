@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import plusIcon from "../../assets/icon-plus.svg";
 import arrowDown from "../../assets/icon-arrow-down.svg";
 import styles from "./Dashboard.module.scss";
@@ -6,6 +7,7 @@ import { getInvoices } from "../../services/invoices.service";
 import InvoiceCards from "./components/InvoiceCards";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
@@ -57,7 +59,10 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
-          <button className={styles.new_invoice__button}>
+          <button
+            onClick={() => navigate("/new-invoice", { replace: true })}
+            className={styles.new_invoice__button}
+          >
             <div className={styles.new_invoice__button_image_container}>
               <img src={plusIcon} alt="Plus icon" />
             </div>
@@ -65,6 +70,7 @@ export default function Dashboard() {
           </button>
         </div>
       </div>
+
       <InvoiceCards invoices={invoices} />
     </section>
   );

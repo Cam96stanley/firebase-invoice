@@ -1,0 +1,145 @@
+@use "../../scss/text-mixins";
+@use "../../scss/variables";
+
+.back__container {
+  @include text-mixins.text-heading-sm;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 1rem;
+  cursor: pointer;
+}
+
+.new_invoice_form {
+  color: white;
+  box-sizing: border-box;
+  padding: 0 10px;
+
+  &__title {
+    @include text-mixins.text-heading-md;
+  }
+
+  label {
+    @include text-mixins.text-heading-sm;
+    color: variables.$gray;
+    margin: 20px 0 10px 0;
+  }
+
+  input {
+    background-color: variables.$dark-gray-blue;
+    border: none;
+    padding: 12px 12px;
+    @include text-mixins.text-heading-sm;
+    color: white;
+    border-radius: 4px;
+  }
+
+  .form_section__title {
+    @include text-mixins.text-heading-sm;
+    color: variables.$purple;
+    margin: 1.75rem 0 0 0;
+  }
+}
+
+.outer_div {
+  display: flex;
+  flex-direction: column;
+}
+
+.inner_div {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.items_container {
+  margin: 2.5rem 0 8rem 0;
+
+  &__title {
+    margin-bottom: 20px;
+    @include text-mixins.text-heading-sm;
+    color: variables.$purple;
+  }
+}
+
+.add_item_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include text-mixins.text-heading-sm-variant;
+  color: variables.$gray;
+  background-color: variables.$dark-gray-blue;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
+  gap: 0.25rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 3rem;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.form__footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: variables.$dark-gray-blue;
+  width: 100%;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 5rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  .discard__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include text-mixins.text-heading-sm-variant;
+    color: variables.$gray;
+    background-color: variables.$dark;
+    border: none;
+    padding: 1rem 1rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+
+  .draft__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include text-mixins.text-heading-sm-variant;
+    color: white;
+    background-color: variables.$gray;
+    border: none;
+    padding: 1rem 1rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+
+  .send__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include text-mixins.text-heading-sm-variant;
+    color: white;
+    background-color: variables.$purple;
+    border: none;
+    padding: 1rem 1rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+}
