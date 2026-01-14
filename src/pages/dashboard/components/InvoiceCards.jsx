@@ -1,6 +1,8 @@
 import styles from "./InvoiceCards.module.scss";
 
 export default function InvoiceCards({ invoices }) {
+  const dateOpt = { day: "2-digit", month: "short", year: "numeric" };
+
   return (
     <>
       {invoices.map((invoice) => (
@@ -14,7 +16,8 @@ export default function InvoiceCards({ invoices }) {
           <div className={styles.card__bottom}>
             <div className={styles.card__bottom_left}>
               <p className={styles.card__bottom_due_date}>
-                {invoice.dueDate.toDate().toLocaleDateString()}
+                Due{" "}
+                {invoice.dueDate.toDate().toLocaleDateString("en-GB", dateOpt)}
               </p>
               <p className={styles.card__bottom_total}>${invoice.total}</p>
             </div>
