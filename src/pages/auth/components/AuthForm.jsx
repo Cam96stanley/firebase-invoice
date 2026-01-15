@@ -34,7 +34,7 @@ export default function LoginForm() {
         setError(result.errorMessage);
       } else {
         console.log("Logged In!", result);
-        navigate("/dashboard", { replace: true });
+        navigate("/my-dashboard", { replace: true });
       }
     }
     if (location.pathname === "/signup") {

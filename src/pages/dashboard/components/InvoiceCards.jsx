@@ -17,7 +17,7 @@ export default function InvoiceCards({ invoices }) {
             <div className={styles.card__bottom_left}>
               <p className={styles.card__bottom_due_date}>
                 Due{" "}
-                {invoice.dueDate.toDate().toLocaleDateString("en-GB", dateOpt)}
+                {new Date(invoice.dueDate).toLocaleDateString("en-GB", dateOpt)}
               </p>
               <p className={styles.card__bottom_total}>${invoice.total}</p>
             </div>

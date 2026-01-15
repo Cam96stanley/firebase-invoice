@@ -35,6 +35,15 @@
     border-radius: 4px;
   }
 
+  select {
+    background-color: variables.$dark-gray-blue;
+    border: none;
+    padding: 12px 12px;
+    @include text-mixins.text-heading-sm;
+    color: white;
+    border-radius: 4px;
+  }
+
   .form_section__title {
     @include text-mixins.text-heading-sm;
     color: variables.$purple;
