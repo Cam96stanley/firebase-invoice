@@ -42,7 +42,7 @@ export default function ItemComponent({ item, onChange, onDelete }) {
             id="total"
             type="number"
             name="total"
-            value={item.total}
+            value={(Number(item.quantity) || 0) * (Number(item.price) || 0)}
             readOnly
           />
         </div>
