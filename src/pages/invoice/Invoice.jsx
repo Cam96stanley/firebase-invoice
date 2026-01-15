@@ -131,11 +131,13 @@ export function Invoice() {
 
   const handleSaveAndSend = async (e) => {
     e.preventDefault();
+    if (!isEditable) return;
+
     try {
-      if (!isEditable) return;
       const pendingInvoice = { ...invoice, status: "Pending" };
-      if (invoice.status === "Draft" || invoice.status === "") {
-        await updateInvoice(invoice.id, pendingInvoice);
+
+      if (invoiceId) {
+        await updateInvoice(invoiceId, pendingInvoice);
       } else {
         await createInvoice(pendingInvoice);
       }
@@ -147,9 +149,10 @@ export function Invoice() {
 
   const handleSaveAsDraft = async (e) => {
     e.preventDefault();
+    if (!isEditable) return;
+
     try {
       const draftInvoice = { ...invoice, status: "Draft" };
-      if (!isEditable) return;
       await createInvoice(draftInvoice);
       navigate("/my-dashboard", { replace: true });
     } catch (err) {

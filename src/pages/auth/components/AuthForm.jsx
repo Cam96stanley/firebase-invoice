@@ -33,7 +33,6 @@ export default function LoginForm() {
       if (result.errorCode) {
         setError(result.errorMessage);
       } else {
-        console.log("Logged In!", result);
         navigate("/my-dashboard", { replace: true });
       }
     }
@@ -42,7 +41,6 @@ export default function LoginForm() {
       if (result.errorCode) {
         setError(result.errorMessage.user);
       } else {
-        console.log("User Created!", result);
         navigate("/dashboard", { replace: true });
       }
     }

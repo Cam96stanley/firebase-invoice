@@ -22,9 +22,7 @@ export const createInvoice = async (invoice) => {
     throw new Error("User not authenticated, Please log in");
 
   const invoiceNumber = await generateInvoiceNumber();
-
   const template = invoiceModel(invoice);
-
   const { valid, errors } = validateInvoice(template);
 
   if (!valid)
@@ -40,7 +38,8 @@ export const createInvoice = async (invoice) => {
     updatedAt: serverTimestamp(),
   };
 
-  return await addDoc(collection(db, "invoices"), payload);
+  const docRef = await addDoc(collection(db, "invoices"), payload);
+  return docRef;
 };
 
 export const getInvoices = async () => {

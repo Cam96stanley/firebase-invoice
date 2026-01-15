@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import plusIcon from "../../assets/icon-plus.svg";
 import arrowDown from "../../assets/icon-arrow-down.svg";
+import illustrationEmpty from "../../assets/illustration-empty.svg";
 import styles from "./Dashboard.module.scss";
 import { getInvoices } from "../../services/invoices.service";
 import InvoiceCards from "./components/InvoiceCards";
@@ -72,6 +73,21 @@ export default function Dashboard() {
       </div>
 
       <InvoiceCards invoices={invoices} />
+
+      {invoices.length === 0 && (
+        <div className={styles.empty__container}>
+          <img
+            src={illustrationEmpty}
+            alt="a woman coming out of an envelope"
+          />
+          <p className={styles.empty__title}>There is nothing here</p>
+          <p className={styles.empty__description}>
+            Create an invoice by clicking the
+            <br />
+            <span className={styles.bold}>New</span> button and get started.
+          </p>
+        </div>
+      )}
     </section>
   );
 }
