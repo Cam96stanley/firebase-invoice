@@ -146,7 +146,7 @@ export function Invoice() {
     try {
       const draftInvoice = { ...invoice, status: "Draft" };
       if (!isEditable) return;
-      await updateInvoice(invoiceId, draftInvoice);
+      await createInvoice(draftInvoice);
       navigate("/my-dashboard", { replace: true });
     } catch (err) {
       console.error(err);

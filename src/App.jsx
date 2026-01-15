@@ -4,7 +4,7 @@ import Signup from "./pages/auth/signup/Signup";
 import Login from "./pages/auth/login/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import { Invoice } from "./pages/new-invoice/Invoice";
+import { Invoice } from "./pages/invoice/Invoice";
 
 function App() {
   return (
