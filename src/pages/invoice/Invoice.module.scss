@@ -108,7 +108,7 @@
   padding: 1.5rem 0;
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 5rem;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -121,7 +121,7 @@
     color: variables.$gray;
     background-color: variables.$dark;
     border: none;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 1.5rem;
     cursor: pointer;
   }
@@ -134,7 +134,7 @@
     color: white;
     background-color: variables.$gray;
     border: none;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 1.5rem;
     cursor: pointer;
   }
@@ -147,7 +147,7 @@
     color: white;
     background-color: variables.$purple;
     border: none;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 1.5rem;
     cursor: pointer;
   }

@@ -36,25 +36,26 @@ export default function PendingInvoice() {
     }
   };
 
-  const handleMarkAsPaid = (e) => {
+  const handleMarkAsPaid = async (e) => {
     e.preventDefault();
 
     try {
       const paidInvoice = { ...invoice, status: "Paid" };
-      updateInvoice(invoice.id, paidInvoice);
+      await updateInvoice(invoice.id, paidInvoice);
       navigate("/my-dashboard", { replace: true });
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
 
     try {
-      deleteInvoice(invoice.id);
+      await deleteInvoice(invoice.id);
+      navigate("/my-dashboard", { replace: true });
     } catch (err) {
-      console.error(err);
+      console.error("Error deleting invoice", err);
     }
   };
 

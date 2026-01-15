@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { createInvoiceTemplate } from "../../utils/createInvoice";
 import arrowLeft from "../../assets/icon-arrow-left.svg";
 import plusIcon from "../../assets/icon-plus.svg";
-import styles from "./NewInvoice.module.scss";
+import styles from "./Invoice.module.scss";
 import ItemComponent from "./components/ItemComponent";
 import { useState, useEffect } from "react";
 import {

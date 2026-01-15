@@ -41,7 +41,7 @@ export default function LoginForm() {
       if (result.errorCode) {
         setError(result.errorMessage.user);
       } else {
-        navigate("/dashboard", { replace: true });
+        navigate("/my-dashboard", { replace: true });
       }
     }
   };
