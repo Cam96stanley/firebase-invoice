@@ -18,13 +18,23 @@ export default function InvoiceCards({ invoices }) {
     }
   };
 
+  const handleInvoiceClick = (invoice) => {
+    if (invoice.status === "Pending" || invoice.status === "Paid") {
+      navigate(`/invoice/${invoice.id}/${invoice.status.toLowerCase()}`, {
+        state: { invoice },
+      });
+    } else {
+      navigate(`/invoice/${invoice.id}`);
+    }
+  };
+
   return (
     <>
       {invoices.map((invoice) => (
         <div
           key={invoice.invoiceNumber}
           className={styles.card}
-          onClick={() => navigate(`/invoice/${invoice.id}`)}
+          onClick={() => handleInvoiceClick(invoice)}
         >
           <div className={styles.card__top}>
             <h2 className={styles.card__top_invoice_number}>

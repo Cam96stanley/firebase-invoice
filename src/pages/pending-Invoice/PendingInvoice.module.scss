@@ -1,0 +1,237 @@
+@use "../../scss/text-mixins";
+@use "../../scss/variables";
+
+.back__container {
+  @include text-mixins.text-heading-sm;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 1rem;
+  cursor: pointer;
+}
+
+.status__container {
+  @include text-mixins.text-body;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  margin: 0 auto;
+  cursor: pointer;
+  background-color: variables.$dark-blue;
+  width: 81vw;
+  height: 90px;
+  border-radius: 8px;
+}
+
+.pending__status {
+  background-color: rgba(255, 165, 0, 0.1);
+  color: #ffab00;
+  @include text-mixins.text-heading-sm;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.details__container {
+  background-color: variables.$dark-blue;
+  width: 81vw;
+  margin: 1rem auto;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 8rem;
+  color: white;
+  @include text-mixins.text-body-variant;
+  font-weight: 300;
+
+  .invoice_number__container {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin-bottom: 2rem;
+  }
+
+  .invoice__number {
+    @include text-mixins.text-heading-sm;
+    margin-bottom: 0.25rem;
+    color: white;
+
+    span {
+      color: variables.$gray;
+    }
+  }
+
+  .bill_from__container {
+    margin-bottom: 2rem;
+  }
+
+  .invoice_details__container {
+    display: flex;
+    gap: 4rem;
+
+    .invoice_date__container {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .invoice_date {
+        @include text-mixins.text-heading-sm;
+      }
+    }
+
+    .payment_due__container {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .payment_date {
+        @include text-mixins.text-heading-sm;
+      }
+    }
+
+    .bill_to__container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      .bill_to_name {
+        @include text-mixins.text-heading-sm;
+      }
+    }
+  }
+
+  .sent_to_email {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+
+    .email {
+      @include text-mixins.text-heading-sm;
+    }
+  }
+}
+
+.items__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: variables.$dark-gray-blue;
+  padding: 1rem;
+  width: 70vw;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: variables.$dark-purple;
+    width: 100%;
+    height: 60px;
+  }
+
+  .items_total {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+
+    @include text-mixins.text-body;
+
+    .total {
+      @include text-mixins.text-heading-md;
+    }
+  }
+}
+
+.statusPending {
+  background-color: rgba(255, 165, 0, 0.1);
+  color: #ffab00;
+}
+
+.statusPaid {
+  background-color: rgba(0, 121, 0, 0.1);
+  color: #66ff00;
+}
+
+.item__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .item_name {
+    @include text-mixins.text-heading-sm;
+  }
+
+  .item_quantity {
+    @include text-mixins.text-heading-sm;
+    color: variables.$gray;
+  }
+
+  .item_total {
+    @include text-mixins.text-heading-sm;
+  }
+}
+
+.button__footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: variables.$dark-gray-blue;
+  width: 100%;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  z-index: 2;
+
+  .edit__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include text-mixins.text-heading-sm-variant;
+    color: white;
+    background-color: variables.$gray;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+
+  .delete__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include text-mixins.text-heading-sm-variant;
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+
+  .paid__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include text-mixins.text-heading-sm-variant;
+    color: white;
+    background-color: variables.$purple;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+}

@@ -5,6 +5,7 @@ import Login from "./pages/auth/login/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { Invoice } from "./pages/invoice/Invoice";
+import PendingInvoice from "./pages/pending-Invoice/PendingInvoice";
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
           <Route path="/my-dashboard" element={<Dashboard />} />
           <Route path="/new-invoice" element={<Invoice />} />
           <Route path="/invoice/:invoiceId" element={<Invoice />} />
+          <Route
+            path="/invoice/:invoiceId/:status"
+            element={<PendingInvoice />}
+          />
         </Route>
       </Route>
     </Routes>

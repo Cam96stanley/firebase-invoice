@@ -7,9 +7,9 @@ export const calculateDueDate = (invoiceDate, paymentTerms) => {
   const due = new Date(date);
   due.setDate(due.getDate() + paymentTerms);
 
-  const year = due.getFullYear();
-  const month = String(due.getMonth() + 1).padStart(2, "0");
-  const day = String(due.getDate()).padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(due);
 };
