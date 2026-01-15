@@ -132,9 +132,13 @@ export function Invoice() {
   const handleSaveAndSend = async (e) => {
     e.preventDefault();
     try {
-      const pendingInvoice = { ...invoice, status: "Pending" };
       if (!isEditable) return;
-      await createInvoice(pendingInvoice);
+      const pendingInvoice = { ...invoice, status: "Pending" };
+      if (invoice.status === "Draft" || invoice.status === "") {
+        await updateInvoice(invoice.id, pendingInvoice);
+      } else {
+        await createInvoice(pendingInvoice);
+      }
       navigate("/my-dashboard", { replace: true });
     } catch (err) {
       console.error(err);
