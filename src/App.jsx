@@ -4,7 +4,7 @@ import Signup from "./pages/auth/signup/Signup";
 import Login from "./pages/auth/login/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import { NewInvoice } from "./pages/new-invoice/NewInvoice";
+import { Invoice } from "./pages/new-invoice/Invoice";
 
 function App() {
   return (
@@ -14,7 +14,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/my-dashboard" element={<Dashboard />} />
-          <Route path="/new-invoice" element={<NewInvoice />} />
+          <Route path="/new-invoice" element={<Invoice />} />
+          <Route path="/invoice/:invoiceId" element={<Invoice />} />
         </Route>
       </Route>
     </Routes>

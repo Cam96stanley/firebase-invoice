@@ -1,15 +1,52 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { createInvoiceTemplate } from "../../utils/createInvoice";
 import arrowLeft from "../../assets/icon-arrow-left.svg";
 import plusIcon from "../../assets/icon-plus.svg";
 import styles from "./NewInvoice.module.scss";
 import ItemComponent from "./components/ItemComponent";
-import { useState } from "react";
-import { createInvoice } from "../../services/invoices.service";
+import { useState, useEffect } from "react";
+import {
+  createInvoice,
+  deleteInvoice,
+  getInvoiceId,
+  updateInvoice,
+} from "../../services/invoices.service";
+import useAuth from "../../context/useAuth";
 
-export function NewInvoice() {
+export function Invoice() {
+  const { user } = useAuth();
   const navigate = useNavigate();
-  const [invoice, setInvoice] = useState(createInvoiceTemplate());
+  const { invoiceId } = useParams();
+  const isEditMode = Boolean(invoiceId);
+  const [invoice, setInvoice] = useState(() => ({
+    ...createInvoiceTemplate(),
+    billFrom: {
+      ...createInvoiceTemplate().billFrom,
+      name: user.displayName || "",
+    },
+  }));
+
+  const isEditable = !isEditMode || invoice.status === "Draft";
+
+  useEffect(() => {
+    if (!isEditMode) return;
+
+    const loadInvoice = async () => {
+      try {
+        const existingInvoice = await getInvoiceId(invoiceId);
+
+        setInvoice({
+          ...createInvoiceTemplate(),
+          ...existingInvoice,
+        });
+      } catch (err) {
+        console.error("Failed to load invoice", err);
+        navigate("/my-dashboard", { replace: true });
+      }
+    };
+
+    loadInvoice();
+  }, [invoiceId, isEditMode, navigate]);
 
   const handleGoBack = () => {
     navigate("/my-dashboard", { replace: true });
@@ -95,9 +132,41 @@ export function NewInvoice() {
   const handleSaveAndSend = async (e) => {
     e.preventDefault();
     try {
-      console.log(invoice);
-      await createInvoice(invoice);
-      navigate("/my-dashboard");
+      const pendingInvoice = { ...invoice, status: "Pending" };
+      if (!isEditable) return;
+      await createInvoice(pendingInvoice);
+      navigate("/my-dashboard", { replace: true });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleSaveAsDraft = async (e) => {
+    e.preventDefault();
+    try {
+      const draftInvoice = { ...invoice, status: "Draft" };
+      if (!isEditable) return;
+      await updateInvoice(invoiceId, draftInvoice);
+      navigate("/my-dashboard", { replace: true });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDiscard = async (e) => {
+    e.preventDefault();
+    try {
+      if (
+        invoice.status === "Draft" ||
+        invoice.status === "" ||
+        invoice.status === "Paid"
+      ) {
+        await deleteInvoice(invoiceId);
+      } else {
+        console.warn("Cannot delete finalized invoice");
+      }
+
+      navigate("/my-dashboard", { replace: true });
     } catch (err) {
       console.error(err);
     }
@@ -117,7 +186,9 @@ export function NewInvoice() {
       </div>
 
       <form className={styles.new_invoice_form}>
-        <h2 className={styles.new_invoice_form__title}>New Invoice</h2>
+        <h2 className={styles.new_invoice_form__title}>
+          {isEditMode ? "Update Invoice" : "New Invoice"}
+        </h2>
 
         <div className={styles.bill_from}>
           <p className={styles.form_section__title}>Bill From</p>
@@ -130,6 +201,7 @@ export function NewInvoice() {
               data-section="billFrom"
               value={invoice.billFrom.name}
               onChange={handleChange}
+              readOnly={!isEditable}
               required
             />
             <label htmlFor="streetAddress">Street Address</label>
@@ -140,6 +212,7 @@ export function NewInvoice() {
               data-section="billFrom"
               value={invoice.billFrom.streetAddress}
               onChange={handleChange}
+              readOnly={!isEditable}
               required
             />
             <div className={styles.inner_div}>
@@ -152,6 +225,7 @@ export function NewInvoice() {
                   data-section="billFrom"
                   value={invoice.billFrom.city}
                   onChange={handleChange}
+                  readOnly={!isEditable}
                   required
                 />
               </div>
@@ -164,6 +238,7 @@ export function NewInvoice() {
                   data-section="billFrom"
                   value={invoice.billFrom.postCode}
                   onChange={handleChange}
+                  readOnly={!isEditable}
                   required
                 />
               </div>
@@ -176,6 +251,7 @@ export function NewInvoice() {
               data-section="billFrom"
               value={invoice.billFrom.country}
               onChange={handleChange}
+              readOnly={!isEditable}
               required
             />
           </div>
@@ -192,6 +268,7 @@ export function NewInvoice() {
               data-section="billTo"
               value={invoice.billTo.name}
               onChange={handleChange}
+              readOnly={!isEditable}
               required
             />
             <label htmlFor="email">Clients Email</label>
@@ -202,6 +279,7 @@ export function NewInvoice() {
               data-section="billTo"
               value={invoice.billTo.email}
               onChange={handleChange}
+              readOnly={!isEditable}
               required
             />
             <label htmlFor="streetAddress">Street Address</label>
@@ -212,6 +290,7 @@ export function NewInvoice() {
               data-section="billTo"
               value={invoice.billTo.streetAddress}
               onChange={handleChange}
+              readOnly={!isEditable}
               required
             />
             <div className={styles.inner_div}>
@@ -224,6 +303,7 @@ export function NewInvoice() {
                   data-section="billTo"
                   value={invoice.billTo.city}
                   onChange={handleChange}
+                  readOnly={!isEditable}
                   required
                 />
               </div>
@@ -236,6 +316,7 @@ export function NewInvoice() {
                   data-section="billTo"
                   value={invoice.billTo.postCode}
                   onChange={handleChange}
+                  readOnly={!isEditable}
                   required
                 />
               </div>
@@ -248,6 +329,7 @@ export function NewInvoice() {
               data-section="billTo"
               value={invoice.billTo.country}
               onChange={handleChange}
+              readOnly={!isEditable}
               required
             />
           </div>
@@ -261,6 +343,7 @@ export function NewInvoice() {
             name="invoiceDate"
             value={invoice.invoiceDate}
             onChange={handleChange}
+            readOnly={!isEditable}
             required
           />
           <label htmlFor="paymentTerms">Payment Terms</label>
@@ -269,6 +352,7 @@ export function NewInvoice() {
             id="paymentTerms"
             value={invoice.paymentTerms}
             onChange={handleChange}
+            disabled={!isEditable}
             required
           >
             <option value="">Select terms</option>
@@ -287,6 +371,7 @@ export function NewInvoice() {
             name="description"
             value={invoice.description}
             onChange={handleChange}
+            readOnly={!isEditable}
             required
           />
         </div>
@@ -303,23 +388,37 @@ export function NewInvoice() {
               }
             />
           ))}
-          <button
-            type="button"
-            className={styles.add_item_button}
-            onClick={addItem}
-          >
-            <img src={plusIcon} alt="Plus icon" /> Add New Item
-          </button>
+          {isEditable && (
+            <button
+              type="button"
+              className={styles.add_item_button}
+              onClick={addItem}
+            >
+              <img src={plusIcon} alt="Plus icon" /> Add New Item
+            </button>
+          )}
         </div>
 
         <div className={styles.form__footer}>
-          <button type="button" className={styles.discard__button}>
+          <button
+            // disabled={!isEditable}
+            onClick={handleDiscard}
+            className={styles.discard__button}
+          >
             Discard
           </button>
-          <button type="button" className={styles.draft__button}>
+          <button
+            disabled={!isEditable}
+            onClick={handleSaveAsDraft}
+            className={styles.draft__button}
+          >
             Save as Draft
           </button>
-          <button onClick={handleSaveAndSend} className={styles.send__button}>
+          <button
+            disabled={!isEditable}
+            onClick={handleSaveAndSend}
+            className={styles.send__button}
+          >
             Save & Send
           </button>
         </div>

@@ -1,0 +1,9 @@
+@use "../scss/text-mixins";
+
+.loading__state {
+  @include text-mixins.text-heading-md;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}

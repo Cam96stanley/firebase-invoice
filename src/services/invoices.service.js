@@ -1,10 +1,14 @@
 import {
   addDoc,
+  getDoc,
+  doc,
   collection,
   serverTimestamp,
   where,
   query,
   getDocs,
+  updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 import { calculateTotal } from "../utils/calculateTotal";
@@ -55,6 +59,50 @@ export const getInvoices = async () => {
     return invoices;
   } catch (err) {
     console.error("Error fetching invoices:", err);
-    return [];
+    throw err;
+  }
+};
+
+export const getInvoiceId = async (id) => {
+  try {
+    const docRef = doc(db, "invoices", id);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
+      throw new Error("Invoice not found");
+    }
+
+    return {
+      id: docSnap.id,
+      ...docSnap.data(),
+    };
+  } catch (err) {
+    console.error("Error fetching invoice", err);
+    throw err;
+  }
+};
+
+export const updateInvoice = async (id, invoiceData) => {
+  try {
+    const docRef = doc(db, "invoices", id);
+    await updateDoc(docRef, {
+      ...invoiceData,
+      updatedAt: new Date(),
+    });
+  } catch (err) {
+    console.error("Document failed to update", err);
+    throw err;
+  }
+};
+
+export const deleteInvoice = async (id) => {
+  if (!id) throw new Error("deleteInvoice called without and ID");
+
+  try {
+    const docRef = doc(db, "invoices", id);
+    await deleteDoc(docRef);
+  } catch (err) {
+    console.error("Error deleting invoice", err);
+    throw err;
   }
 };
