@@ -175,7 +175,7 @@ export default function PendingInvoice() {
             className={styles.modal}
             role="dialog"
             aria-modal="true"
-            aria-labelledy="delete-title"
+            aria-labelledby="delete-title"
           >
             <h2 id="delete-title">Confirm Deletion</h2>
             <p>
