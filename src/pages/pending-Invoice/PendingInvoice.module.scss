@@ -234,3 +234,64 @@
     cursor: pointer;
   }
 }
+
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: variables.$dark-blue;
+  padding: 2rem 1rem;
+  color: white;
+  margin: auto;
+  border-radius: 8px;
+  max-width: 280px;
+  width: 100%;
+
+  h2 {
+    @include text-mixins.text-heading-md;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    @include text-mixins.text-body-variant;
+    width: 230px;
+  }
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancel__button {
+  display: flex;
+  justify-content: center;
+  @include text-mixins.text-heading-sm-variant;
+  color: white;
+  background-color: variables.$dark-gray-blue;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.confirm__button {
+  display: flex;
+  justify-content: center;
+  @include text-mixins.text-heading-sm-variant;
+  color: white;
+  background-color: red;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}

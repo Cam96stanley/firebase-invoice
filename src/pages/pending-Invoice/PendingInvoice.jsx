@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import arrowLeft from "../../assets/icon-arrow-left.svg";
 import styles from "./PendingInvoice.module.scss";
@@ -9,6 +10,7 @@ export default function PendingInvoice() {
   const navigate = useNavigate();
   const location = useLocation();
   const { invoice } = location.state || {};
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const dateOpt = { day: "2-digit", month: "short", year: "numeric" };
 
   if (!invoice) {
@@ -155,12 +157,44 @@ export default function PendingInvoice() {
 
       {invoice.status === "Pending" && (
         <div className={styles.button__footer}>
-          <button onClick={handleDelete} className={styles.delete__button}>
+          <button
+            onClick={() => setShowDeleteModal(true)}
+            className={styles.delete__button}
+          >
             Delete
           </button>
           <button onClick={handleMarkAsPaid} className={styles.paid__button}>
             Mark as Paid
           </button>
+        </div>
+      )}
+
+      {showDeleteModal && (
+        <div className={styles.modal__overlay}>
+          <div
+            className={styles.modal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledy="delete-title"
+          >
+            <h2 id="delete-title">Confirm Deletion</h2>
+            <p>
+              {`Are you sure you want to delete invoice #${invoice.invoiceNumber}? This
+              action cannot be undone.`}
+            </p>
+            <div className={styles.modal__actions}>
+              <button
+                className={styles.cancel__button}
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </button>
+
+              <button className={styles.confirm__button} onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </>
