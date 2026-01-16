@@ -36,24 +36,20 @@ export default function InvoiceCards({ invoices }) {
           className={styles.card}
           onClick={() => handleInvoiceClick(invoice)}
         >
-          <div className={styles.card__top}>
-            <h2 className={styles.card__top_invoice_number}>
-              {invoice.invoiceNumber}
-            </h2>
-            <p className={styles.card__top_recipient}>{invoice.billTo.name}</p>
-          </div>
-          <div className={styles.card__bottom}>
-            <div className={styles.card__bottom_left}>
-              <p className={styles.card__bottom_due_date}>
-                Due{" "}
-                {new Date(invoice.dueDate).toLocaleDateString("en-GB", dateOpt)}
-              </p>
-              <p className={styles.card__bottom_total}>${invoice.total}</p>
-            </div>
+          <div className={styles.card__grid}>
+            <p className={styles.invoiceNumber}>
+              <span className={styles.hash}>#</span>
+              {`${invoice.invoiceNumber}`}
+            </p>
+            <p className={styles.invoiceDate}>
+              Due{" "}
+              {new Date(invoice.dueDate).toLocaleDateString("en-GB", dateOpt)}
+            </p>
+
+            <p className={styles.clientName}>{invoice.billTo.name}</p>
+            <p className={styles.invoiceTotal}>${invoice.total}</p>
             <div
-              className={`${styles.card__bottom_right} ${getStatusClass(
-                invoice.status
-              )}`}
+              className={`${styles.status} ${getStatusClass(invoice.status)}`}
             >
               {invoice.status}
             </div>

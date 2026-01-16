@@ -34,7 +34,8 @@ export default function Dashboard() {
         <div className={styles.right__container}>
           <div className={styles.dropdown}>
             <button className={styles.dropdown__button}>
-              Filter <img src={arrowDown} alt="Down arrow icon" />
+              <span className={styles.filter__label}>Filter</span>{" "}
+              <img src={arrowDown} alt="Down arrow icon" />
             </button>
             <div className={styles.dropdown__content}>
               <p
@@ -67,7 +68,7 @@ export default function Dashboard() {
             <div className={styles.new_invoice__button_image_container}>
               <img src={plusIcon} alt="Plus icon" />
             </div>
-            New
+            <span className={styles.label}>New</span>
           </button>
         </div>
       </div>

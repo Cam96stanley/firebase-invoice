@@ -2,76 +2,105 @@
 @use "../../../scss/text-mixins";
 
 .card {
-  display: flex;
-  flex-direction: column;
-  width: 280px;
-  margin: 1rem auto;
-  background-color: variables.$dark-blue;
+  padding: 1rem;
+  background-color: variables.$dark-gray-blue;
   border-radius: 8px;
-  padding: 1.5rem;
-  gap: 1rem;
-  color: white;
   cursor: pointer;
+  color: white;
+  max-width: 300px;
+  margin: 2rem auto;
 
   &:hover {
-    box-shadow: 0 4px 6px rgb(146, 119, 255);
+    box-shadow: 0 6px 6px variables.$purple;
   }
 
-  &__top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: inherit;
+  .hash {
+    color: variables.$gray;
+  }
 
-    &_invoice_number {
+  .card__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "invoiceNumber   clientName"
+      "invoiceDate     status"
+      "invoiceTotal    status";
+    gap: 0.5rem;
+
+    .invoiceNumber {
+      grid-area: invoiceNumber;
       @include text-mixins.text-heading-sm;
     }
-
-    &_recipient {
+    .invoiceDate {
+      grid-area: invoiceDate;
       @include text-mixins.text-body;
+      font-weight: 200;
     }
-  }
-
-  &__bottom {
-    display: flex;
-    justify-content: space-between;
-
-    &_due_date {
-      @include text-mixins.text-body-variant;
-    }
-
-    &_total {
+    .invoiceTotal {
+      grid-area: invoiceTotal;
       @include text-mixins.text-heading-sm;
     }
-
-    &_left {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+    .clientName {
+      grid-area: clientName;
+      justify-self: end;
+      @include text-mixins.text-body;
+      font-weight: 400;
     }
-
-    &_right {
+    .status {
+      grid-area: status;
+      justify-self: end;
+      align-self: center;
       display: flex;
-      align-items: center;
       justify-content: center;
-      width: 100px;
+      padding: 0.75rem 1.25rem;
       border-radius: 8px;
       @include text-mixins.text-heading-sm;
+    }
+  }
 
-      &.statusDraft {
-        background-color: rgba(128, 128, 128, 0.1);
-        color: #888eb0;
+  .statusDraft {
+    color: white;
+    background-color: rgba(136, 142, 176, 0.4);
+  }
+
+  .statusPending {
+    color: #e9d502;
+    background-color: rgba(233, 213, 2, 0.2);
+  }
+
+  .statusPaid {
+    color: rgb(0, 128, 0);
+    background-color: rgba(0, 128, 0, 0.1);
+  }
+
+  @media (min-width: 600px) {
+    max-width: 85vw;
+    .card__grid {
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-areas: "invoiceNumber invoiceDate clientName invoiceTotal status";
+      gap: 1rem;
+
+      text-align: center;
+
+      .invoiceNumber {
+        justify-self: start;
       }
-
-      &.statusPending {
-        background-color: rgba(255, 165, 0, 0.1);
-        color: #ffab00;
+      .invoiceDate {
+        justify-self: start;
       }
-
-      &.statusPaid {
-        background-color: rgba(0, 121, 0, 0.1);
-        color: #66ff00;
+      .clientName {
+        justify-self: start;
+      }
+      .invoiceTotal {
+        justify-self: start;
+      }
+      .status {
+        justify-self: start;
       }
     }
+  }
+
+  @media (min-width: 1020px) {
+    max-width: 1000px;
   }
 }

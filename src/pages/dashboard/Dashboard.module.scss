@@ -17,11 +17,20 @@
   &_invoice_text {
     @include text-mixins.text-heading-md;
     color: white;
+
+    @media (min-width: 768px) {
+      @include text-mixins.text-heading-lg;
+      font-weight: 700;
+    }
   }
 
   &_invoice_count {
     @include text-mixins.text-body-variant;
     color: white;
+
+    @media (min-width: 768px) {
+      @include text-mixins.text-heading-sm;
+    }
   }
 }
 
@@ -44,6 +53,16 @@
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
+  }
+
+  .filter__label::after {
+    content: "";
+  }
+
+  @media (min-width: 768px) {
+    .filter__label::after {
+      content: " by status";
+    }
   }
 
   &:hover .dropdown__content {
@@ -96,6 +115,16 @@
     background-color: variables.$light;
     padding: 0.65rem 0.75rem;
     border-radius: 50%;
+  }
+
+  .label::after {
+    content: "";
+  }
+
+  @media (min-width: 768px) {
+    .label::after {
+      content: " Invoice";
+    }
   }
 }
 
