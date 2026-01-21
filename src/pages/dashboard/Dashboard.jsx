@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import plusIcon from "../../assets/icon-plus.svg";
-import arrowDown from "../../assets/icon-arrow-down.svg";
+// import arrowDown from "../../assets/icon-arrow-down.svg";
 import illustrationEmpty from "../../assets/illustration-empty.svg";
 import styles from "./Dashboard.module.scss";
 import { getInvoices } from "../../services/invoices.service";
@@ -32,7 +32,7 @@ export default function Dashboard() {
           </p>
         </div>
         <div className={styles.right__container}>
-          <div className={styles.dropdown}>
+          {/* <div className={styles.dropdown}>
             <button className={styles.dropdown__button}>
               <span className={styles.filter__label}>Filter</span>{" "}
               <img src={arrowDown} alt="Down arrow icon" />
@@ -60,7 +60,7 @@ export default function Dashboard() {
                 Canceled
               </p>
             </div>
-          </div>
+          </div> */}
           <button
             onClick={() => navigate("/new-invoice", { replace: true })}
             className={styles.new_invoice__button}
