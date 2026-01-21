@@ -20,6 +20,7 @@
 
   .card__grid {
     display: grid;
+    align-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "invoiceNumber   clientName"
@@ -44,7 +45,7 @@
       grid-area: clientName;
       justify-self: end;
       @include text-mixins.text-body;
-      font-weight: 400;
+      font-weight: 200;
     }
     .status {
       grid-area: status;
@@ -54,6 +55,7 @@
       justify-content: center;
       padding: 0.75rem 1.25rem;
       border-radius: 8px;
+      width: 89px;
       @include text-mixins.text-heading-sm;
     }
   }

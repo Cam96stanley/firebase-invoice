@@ -78,13 +78,12 @@ export default function PendingInvoice() {
         <p>Status</p>
         <div
           className={`${styles.pending__status} ${getStatusClass(
-            invoice.status
+            invoice.status,
           )}`}
         >
           {invoice.status}
         </div>
       </div>
-
       <div className={styles.details__container}>
         <div className={styles.invoice_number__container}>
           <p className={styles.invoice__number}>
@@ -103,23 +102,23 @@ export default function PendingInvoice() {
         <div className={styles.invoice_details__container}>
           <div>
             <div className={styles.invoice_date__container}>
-              <p>Invoice Date</p>
+              <p className={styles.invoice_due__heading}>Invoice Date</p>
               <p className={styles.invoice_date}>
                 {new Date(invoice.invoiceDate).toLocaleDateString(
                   "en-GB",
-                  dateOpt
+                  dateOpt,
                 )}
               </p>
             </div>
             <div className={styles.payment_due__container}>
-              <p>Payment Due</p>
+              <p className={styles.payment_due__heading}>Payment Due</p>
               <p className={styles.payment_date}>
                 {calculateDueDate(invoice.invoiceDate, invoice.paymentTerms)}
               </p>
             </div>
           </div>
           <div className={styles.bill_to__container}>
-            <p>Bill To</p>
+            <p className={styles.bill_to__heading}>Bill To</p>
             <p className={styles.bill_to_name}>{invoice.billTo.name}</p>
             <div>
               <p>{invoice.billTo.streetAddress}</p>
@@ -130,7 +129,7 @@ export default function PendingInvoice() {
           </div>
         </div>
         <div className={styles.sent_to_email}>
-          <p>Sent to</p>
+          <p className={styles.sent_to__heading}>Sent to</p>
           <p className={styles.email}>{invoice.billTo.email}</p>
         </div>
 
@@ -149,7 +148,7 @@ export default function PendingInvoice() {
             </div>
           ))}
           <div className={styles.items_total}>
-            <p>Amount Due</p>
+            <p className={styles.amount_due__heading}>Amount Due</p>
             <p className={styles.total}>${calculateTotal(invoice.items)}</p>
           </div>
         </div>

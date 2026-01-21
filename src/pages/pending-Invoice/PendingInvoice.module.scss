@@ -20,7 +20,7 @@
   padding: 0 1rem;
   margin: 0 auto;
   background-color: variables.$dark-blue;
-  width: 81vw;
+  max-width: 80vw;
   height: 90px;
   border-radius: 8px;
 }
@@ -35,7 +35,11 @@
 
 .details__container {
   background-color: variables.$dark-blue;
-  width: 81vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80vw;
   margin: 1rem auto;
   border-radius: 8px;
   padding: 1rem;
@@ -44,73 +48,54 @@
   @include text-mixins.text-body-variant;
   font-weight: 300;
 
+  .invoice_due__heading,
+  .payment_due__heading,
+  .sent_to__heading,
+  .bill_to__heading {
+    @include text-mixins.text-heading-sm;
+  }
+
   .invoice_number__container {
-    display: flex;
-    flex-direction: column;
-    width: 50vw;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .invoice__number {
     @include text-mixins.text-heading-sm;
-    margin-bottom: 0.25rem;
-    color: white;
+  }
 
-    span {
-      color: variables.$gray;
-    }
+  .invoice_number__container,
+  .bill_from__container,
+  .invoice_details__container,
+  .sent_to_email {
+    display: grid;
+    gap: 0.25rem;
   }
 
   .bill_from__container {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .invoice_details__container {
-    display: flex;
-    gap: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
 
-    .invoice_date__container {
-      margin-bottom: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-
-      .invoice_date {
-        @include text-mixins.text-heading-sm;
-      }
-    }
-
+    .invoice_date__container,
     .payment_due__container {
-      margin-bottom: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-
-      .payment_date {
-        @include text-mixins.text-heading-sm;
-      }
+      display: grid;
+      gap: 0.25rem;
+      margin: 1rem 0;
     }
 
     .bill_to__container {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-
-      .bill_to_name {
-        @include text-mixins.text-heading-sm;
-      }
+      margin-top: 1.25rem;
+      display: grid;
     }
   }
 
   .sent_to_email {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-
-    .email {
-      @include text-mixins.text-heading-sm;
-    }
+    display: grid;
+    gap: 0.25rem;
   }
 }
 
@@ -118,13 +103,15 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-self: center;
+  width: 60vw;
+
   gap: 1rem;
   background-color: variables.$dark-gray-blue;
   padding: 1rem;
-  width: 70vw;
-  margin: 0 auto;
   border-radius: 8px;
   overflow: hidden;
+  margin: 2rem 0;
 
   &::before {
     content: "";
@@ -294,4 +281,56 @@
   padding: 1rem 1.5rem;
   border-radius: 1.5rem;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .status__container {
+    max-width: 600px;
+  }
+
+  .details__container {
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    justify-items: stretch;
+  }
+
+  .invoice_date__container {
+    grid-column: 1;
+  }
+
+  .invoice_details__container {
+    grid-column: 1;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .bill_to__container {
+    grid-column: 2;
+  }
+
+  .sent_to_email {
+    grid-column: 3;
+  }
+
+  .bill_from__container {
+    grid-column: 4;
+    margin-left: 3rem;
+  }
+
+  .items__container {
+    grid-row: 3;
+    grid-column: 1 / -1;
+    width: 500px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .status__container {
+    max-width: 800px;
+  }
+
+  .details__container {
+    max-width: 800px;
+  }
 }

@@ -12,6 +12,10 @@
     @include text-mixins.text-heading-lg;
     color: white;
     margin-bottom: 2rem;
+
+    @media (min-width: 600px) {
+      font-size: 60px;
+    }
   }
 
   .text {

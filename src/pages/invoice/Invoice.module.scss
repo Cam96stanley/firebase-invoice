@@ -53,6 +53,12 @@
   }
 }
 
+@media (min-width: 768px) {
+  .new_invoice_form {
+    max-width: 80%;
+  }
+}
+
 .outer_div {
   display: flex;
   flex-direction: column;
@@ -116,61 +122,79 @@
   border-top-right-radius: 8px;
 }
 
+.discard__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include text-mixins.text-heading-sm-variant;
+  color: variables.$gray;
+  background-color: variables.$dark;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.draft__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include text-mixins.text-heading-sm-variant;
+  color: white;
+  background-color: variables.$gray;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.send__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include text-mixins.text-heading-sm-variant;
+  color: white;
+  background-color: variables.$purple;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .form__footer {
     gap: 4rem;
   }
 
+  .new_invoice_form {
+    max-width: 80%;
+  }
+
+  .items_container {
+    max-width: 550px;
+    margin: 2rem auto 10rem auto;
+  }
+
   .discard__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @include text-mixins.text-heading-sm-variant;
-    color: variables.$gray;
-    background-color: variables.$dark;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 1.5rem;
-    cursor: pointer;
+    padding: 1rem 1.5rem;
   }
 
   .draft__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @include text-mixins.text-heading-sm-variant;
-    color: white;
-    background-color: variables.$gray;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 1.5rem;
-    cursor: pointer;
+    padding: 1rem 1.5rem;
   }
 
   .send__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @include text-mixins.text-heading-sm-variant;
-    color: white;
-    background-color: variables.$purple;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 1.5rem;
-    cursor: pointer;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (min-width: 1020px) {
+  .items_container {
+    max-width: 600px;
+    margin: 2rem auto 10rem auto;
   }
 
-  @media (min-width: 768px) {
-    .discard__button {
-      padding: 1rem 1.5rem;
-    }
-
-    .draft__button {
-      padding: 1rem 1.5rem;
-    }
-
-    .send__button {
-      padding: 1rem 1.5rem;
-    }
+  .new_invoice_form {
+    max-width: 800px;
   }
 }
